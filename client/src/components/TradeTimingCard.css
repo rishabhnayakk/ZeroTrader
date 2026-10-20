@@ -1,0 +1,513 @@
+/* TradeTimingCard (Best Time to Buy or Sell Radar) */
+.trade-timing-card {
+  position: absolute;
+  top: 10px;
+  right: 65px;
+  z-index: 25;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  user-select: none;
+  max-width: 440px;
+  width: 440px;
+}
+
+/* Light Theme Solid Background Override */
+[data-theme='light'] .trade-timing-card {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+/* Header */
+.trade-timing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  border-radius: 0px !important;
+}
+
+[data-theme='light'] .trade-timing-header {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.trade-timing-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.timing-clock-icon {
+  color: var(--text-secondary);
+}
+
+.timing-title-text {
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.timing-phase-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.timing-phase-chip.green {
+  background: var(--green-light);
+  color: var(--green);
+  border-color: var(--green-border);
+}
+
+.timing-phase-chip.yellow {
+  background: var(--yellow-light);
+  color: var(--yellow);
+  border-color: var(--border);
+}
+
+.timing-phase-chip.red {
+  background: var(--red-light);
+  color: var(--red);
+  border-color: var(--red-border);
+}
+
+.timing-phase-chip.muted {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.timing-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 1.8s infinite;
+}
+
+.timing-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timing-minimize-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  box-shadow: none !important;
+}
+
+.timing-minimize-action-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+[data-theme='light'] .timing-minimize-action-btn {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+[data-theme='light'] .timing-minimize-action-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.timing-collapse-btn {
+  color: var(--text-muted);
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s;
+  border-radius: 0px !important;
+}
+
+.timing-collapse-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border);
+  background: var(--bg-card-hover);
+}
+
+.timing-close-icon-btn {
+  color: var(--text-muted);
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s;
+  border-radius: 0px !important;
+}
+
+.timing-close-icon-btn:hover {
+  color: var(--red);
+  border-color: var(--red-border);
+  background: var(--red-light);
+}
+
+/* Collapsed Compact State */
+.trade-timing-card.collapsed {
+  width: auto;
+  max-width: 580px;
+}
+
+.trade-timing-card.collapsed .trade-timing-header {
+  border-bottom: none;
+  padding: 6px 12px;
+}
+
+.timing-collapsed-signal-tag {
+  padding: 2px 7px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  border: 1px solid var(--border);
+}
+
+.timing-collapsed-signal-tag.green {
+  background: var(--green-light);
+  color: var(--green);
+  border-color: var(--green-border);
+}
+
+.timing-collapsed-signal-tag.red {
+  background: var(--red-light);
+  color: var(--red);
+  border-color: var(--red-border);
+}
+
+.timing-collapsed-signal-tag.neutral {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.timing-collapsed-summary {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+.timing-collapsed-summary strong {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* Expanded Card Body */
+.trade-timing-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Signal Banner */
+.timing-signal-banner {
+  padding: 10px 12px;
+  border-radius: 0px !important;
+  border: 1px solid var(--border);
+  box-shadow: none !important;
+}
+
+.timing-signal-banner.green {
+  background: rgba(0, 230, 118, 0.08);
+  border-color: var(--green-border);
+}
+
+.timing-signal-banner.red {
+  background: rgba(255, 82, 82, 0.08);
+  border-color: var(--red-border);
+}
+
+.signal-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.signal-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.signal-confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+[data-theme='light'] .signal-confidence {
+  color: #0f172a;
+}
+
+.signal-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.signal-verdict {
+  font-size: 14px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  letter-spacing: 0.2px;
+}
+
+.timing-signal-banner.green .signal-verdict {
+  color: var(--green);
+}
+
+.timing-signal-banner.red .signal-verdict {
+  color: var(--red);
+}
+
+.signal-icon {
+  display: flex;
+  align-items: center;
+}
+
+.timing-signal-banner.green .signal-icon {
+  color: var(--green);
+}
+
+.timing-signal-banner.red .signal-icon {
+  color: var(--red);
+}
+
+.signal-caption {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Timing Schedule Grid */
+.timing-schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.schedule-box {
+  padding: 8px 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+[data-theme='light'] .schedule-box {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.schedule-box-header {
+  margin-bottom: 4px;
+}
+
+.schedule-box-tag {
+  font-size: 9px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+.schedule-box-tag.buy {
+  color: var(--green);
+}
+
+.schedule-box-tag.sell {
+  color: var(--red);
+}
+
+.schedule-hours {
+  font-size: 13px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+}
+
+.schedule-hours-secondary {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.schedule-desc {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* Recommended Trigger Price Zones */
+.timing-levels-block {
+  padding: 8px 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+[data-theme='light'] .timing-levels-block {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.levels-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+}
+
+.level-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+}
+
+[data-theme='light'] .level-item {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.level-k {
+  font-size: 8px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.4px;
+}
+
+.level-v {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.level-item.buy-level {
+  border-left: 2px solid var(--green);
+}
+
+.level-item.sell-level {
+  border-left: 2px solid var(--red);
+}
+
+.level-item.sl-level {
+  border-left: 2px solid var(--text-muted);
+}
+
+/* Footer Indicator Meta */
+.timing-footer-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+}
+
+[data-theme='light'] .timing-footer-meta {
+  border-color: #e2e8f0;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meta-k {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.meta-v {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.meta-v.highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+[data-theme='light'] .meta-v.highlight {
+  color: #0f172a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .trade-timing-card {
+    right: 10px;
+    max-width: calc(100% - 20px);
+  }
+}

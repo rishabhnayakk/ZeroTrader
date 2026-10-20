@@ -1,0 +1,214 @@
+/* TopBar - Header Bar with Live Market Ticker & Right Top Notification Menu */
+
+.app-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 24px;
+  background: linear-gradient(180deg, #16181b 0%, #101214 100%);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  gap: 16px;
+}
+
+/* Left: Live Ticker Strip */
+.topbar-tickers {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.topbar-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.topbar-ticker-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent);
+  box-shadow: none;
+}
+
+.ticker-sym {
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+.ticker-val {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ticker-chg {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ticker-chg.green {
+  color: var(--green);
+}
+
+.ticker-chg.red {
+  color: var(--red);
+}
+
+/* Right: Actions, Clock, Notification Menu, Profile */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.topbar-market-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 0px !important;
+  font-size: 10.5px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: #4ade80;
+  letter-spacing: 0.5px;
+}
+
+.live-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 0px !important;
+  box-shadow: none;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.topbar-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.clock-icon {
+  color: var(--text-secondary);
+}
+
+.topbar-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: none;
+}
+
+.topbar-theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+.topbar-notif-wrapper {
+  position: relative;
+}
+
+.topbar-profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 8px 3px 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 0px !important;
+  cursor: default;
+}
+
+.profile-chip-avatar {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--text-secondary) 0%, var(--bg-deep) 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  border-radius: 0px !important;
+}
+
+.profile-chip-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.topbar-profile.topbar-profile-disconnected {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
+.topbar-disconnected-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--text-muted);
+  border-radius: 0px;
+  flex-shrink: 0;
+}
+
+.profile-chip-id {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 900px) {
+  .topbar-tickers {
+    display: none;
+  }
+}

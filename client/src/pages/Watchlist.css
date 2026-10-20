@@ -1,0 +1,129 @@
+.add-symbol-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.quote-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 0px;
+  padding: 18px;
+  box-shadow: none;
+  transition: border-color 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.9;
+}
+
+.quote-card.up::before {
+  background: var(--green);
+  box-shadow: none;
+}
+
+.quote-card.down::before {
+  background: var(--red);
+  box-shadow: none;
+}
+
+.quote-card:hover {
+  box-shadow: none;
+  border-color: var(--border-light);
+}
+
+.quote-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.quote-symbol {
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.quote-exchange {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.quote-price {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.quote-change {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  padding: 2px 7px;
+  border-radius: 0px;
+}
+
+.quote-change.green {
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+}
+
+.quote-change.red {
+  background: var(--red-light);
+  border: 1px solid var(--red-border);
+}
+
+.quote-meta {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-family: var(--font-mono);
+  padding: 6px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.quote-actions {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.quote-loading {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}

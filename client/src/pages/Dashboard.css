@@ -1,0 +1,271 @@
+.page {
+  padding: 28px 32px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.page-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-family: var(--font-body);
+}
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-light);
+  color: var(--green);
+  padding: 6px 16px;
+  border-radius: 0px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  border: 1px solid var(--green-border);
+  box-shadow: none;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+.empty-state {
+  padding: 44px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: var(--font-body);
+}
+
+.page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+  gap: 14px;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
+.page-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 28px;
+}
+
+.error-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 0px;
+  padding: 32px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.error-box h2 {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.error-box p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+
+.error-hint {
+  font-size: 12px !important;
+}
+
+.error-hint code {
+  background: rgba(255, 82, 82, 0.15);
+  padding: 2px 7px;
+  border-radius: 0px;
+  font-family: var(--font-mono);
+  color: var(--red);
+}
+
+@media (max-width: 1200px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .kite-auth-alert { flex-direction: column; align-items: flex-start; }
+}
+
+/* Zerodha Kite Authentication Alert Banner - Clean Institutional Style */
+.kite-auth-alert {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.kite-auth-alert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kite-auth-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #201315;
+  color: var(--red);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border: 1px solid #4a1f24;
+  border-radius: 0px;
+  width: fit-content;
+  font-family: var(--font-mono);
+}
+
+.kite-auth-title {
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+.kite-auth-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+.kite-auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.kite-auth-modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  border-radius: 0px;
+  width: 100%;
+  max-width: 520px;
+  padding: 26px;
+  position: relative;
+}
+
+.kite-auth-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+}
+
+.kite-auth-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+}
+
+.kite-auth-step {
+  margin-bottom: 18px;
+}
+
+.kite-auth-step-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+.kite-auth-modal-input {
+  width: 100%;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 14px;
+  margin-top: 6px;
+  box-sizing: border-box;
+  border-radius: 0px;
+}
+
+.kite-auth-modal-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: none;
+}
