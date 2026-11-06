@@ -37,3 +37,4 @@ export const getMarketTrackerHistory = (
 export const checkHealth = () => api.get('/health');
 
 export default api;
+export const getIpos = () => api.get('/api/ipos');
