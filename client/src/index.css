@@ -20,8 +20,8 @@
   --border-glow: rgba(255, 255, 255, 0.12); /* Glass Top-Rim Specular */
 
   /* Typography Pairing */
-  --font-display: 'Outfit', sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --text-primary: #f8f9fa;                 /* Crisp Pure White */
