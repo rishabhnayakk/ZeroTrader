@@ -9,6 +9,7 @@ import {
   History,
   BarChart2,
   Layers,
+  CalendarDays,
   PanelLeftClose,
   PanelLeftOpen,
   Lock,
@@ -18,6 +19,7 @@ import './Sidebar.css';
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/watchlist', icon: TrendingUp, label: 'Watchlist' },
+  { to: '/ipos', icon: CalendarDays, label: 'IPO Calendar' },
   { to: '/market-tracker', icon: Compass, label: 'Market Tracker' },
   { to: '/option-chain', icon: Layers, label: 'Option Chain' },
   { to: '/charts', icon: BarChart2, label: 'Charts' },
