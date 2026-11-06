@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
+import IpoCalendar from './pages/IpoCalendar';
 import Watchlist from './pages/Watchlist';
 import OptionChain from './pages/OptionChain';
 import Portfolio from './pages/Portfolio';
@@ -67,6 +68,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/ipos" element={<IpoCalendar />} />
               <Route path="/market-tracker" element={<MarketTracker />} />
               <Route path="/option-chain" element={<OptionChain />} />
               <Route path="/charts" element={<Charts />} />
