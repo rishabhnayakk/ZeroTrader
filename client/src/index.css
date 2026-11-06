@@ -561,3 +561,356 @@ input, select, textarea { font-family: inherit; }
   background: #f8f9fa;
   border-color: var(--border);
 }
+
+
+/* ---------------------------------------------------------
+   ZeroTrader UI refresh: simpler, consistent page layouts
+   Shared by Dashboard, Charts, Market Tracker, Option Chain
+   and Portfolio. Presentation only; data/API logic unchanged.
+---------------------------------------------------------- */
+:root {
+  --bg-deep: #0b0e11;
+  --bg: #101419;
+  --bg-surface: #151b22;
+  --bg-card: #171e26;
+  --bg-card-hover: #202a35;
+  --bg-sidebar: #11171d;
+  --bg-elevated: #202832;
+  --bg-subtle: #19212a;
+  --border: #293440;
+  --border-subtle: #222c36;
+  --border-light: #3b4856;
+  --text-primary: #edf2f7;
+  --text-secondary: #b4bfcc;
+  --text-muted: #8491a0;
+  --accent: #aebdca;
+  --accent-hover: #d5dee7;
+  --accent-light: rgba(174,189,202,.10);
+  --accent-border: rgba(174,189,202,.28);
+  --green: #18b981;
+  --green-light: rgba(24,185,129,.12);
+  --green-border: rgba(24,185,129,.3);
+  --red: #ef5967;
+  --red-light: rgba(239,89,103,.12);
+  --red-border: rgba(239,89,103,.3);
+  --radius: 6px;
+  --radius-sm: 4px;
+  --radius-xs: 3px;
+}
+
+html, body {
+  background: var(--bg);
+  background-image: none;
+  font-size: 14px;
+}
+
+.card,
+.stats-grid > *,
+.pulse-card,
+.sector-card,
+.ohlc-filter-card,
+.ohlc-table-card,
+.oc-kpi-bar,
+.oc-table-container,
+.portfolio-summary,
+.charts-bar,
+.chart-view-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.page {
+  padding: 24px clamp(16px, 2.4vw, 32px);
+}
+
+.page-header,
+.tracker-page-header {
+  margin-bottom: 20px;
+  gap: 14px;
+}
+
+.page-title,
+.tracker-title-box h1,
+.tracker-title {
+  font-size: clamp(22px, 2vw, 27px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.page-sub {
+  margin-top: 5px;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.stats-grid {
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.dash-grid {
+  gap: 14px;
+}
+
+.card-header {
+  padding: 14px 16px;
+}
+
+.card-title,
+.section-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.table th,
+.ohlc-aligned-table th,
+.oc-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: .045em;
+}
+
+.table td,
+.ohlc-aligned-table td,
+.oc-table td {
+  padding: 11px 12px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn {
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.btn-primary {
+  background: #d7e0e8;
+  color: #111820;
+  border: 1px solid #d7e0e8;
+}
+
+.btn-primary:hover {
+  background: #ffffff;
+  color: #111820;
+}
+
+.btn-outline,
+.input,
+.select,
+.search-input,
+.filter-input {
+  border-radius: 4px;
+}
+
+input, select, textarea {
+  min-height: 34px;
+}
+
+/* 1. Dashboard */
+.stats-grid > * {
+  min-width: 0;
+}
+
+.dash-grid .card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.header-badge {
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+/* 2. Charts workspace */
+.charts-page {
+  height: auto;
+  min-height: calc(100vh - 48px);
+  overflow: visible;
+  padding: 18px clamp(14px, 2vw, 28px);
+  gap: 12px;
+}
+
+.charts-bar {
+  padding: 10px 12px;
+  margin-bottom: 4px;
+  gap: 10px;
+}
+
+.chart-search-wrapper {
+  max-width: 360px;
+}
+
+.chart-view-wrapper {
+  min-height: 420px;
+  overflow: hidden;
+}
+
+/* 3. Market Tracker */
+.market-tracker-page {
+  padding: 24px clamp(16px, 2.4vw, 32px);
+}
+
+.market-pulse-grid,
+.sector-heatmap-grid {
+  gap: 10px;
+}
+
+.pulse-card,
+.sector-card {
+  padding: 14px;
+}
+
+.tracker-section {
+  margin-top: 18px;
+}
+
+.section-header {
+  margin-bottom: 12px;
+}
+
+.ohlc-filter-card,
+.ohlc-table-card {
+  padding: 14px;
+}
+
+.ohlc-filter-grid {
+  gap: 12px;
+}
+
+/* 4. Option Chain */
+.option-chain-page {
+  padding: 22px clamp(12px, 2vw, 28px);
+}
+
+.oc-controls {
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.oc-kpi-bar {
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+
+.oc-kpi-item {
+  padding: 4px 10px;
+}
+
+.oc-table-container {
+  overflow: auto;
+}
+
+.oc-table {
+  min-width: 860px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.oc-table td {
+  white-space: nowrap;
+}
+
+.strike-cell,
+.atm-pill {
+  font-weight: 700;
+}
+
+/* 5. Portfolio */
+.portfolio-summary {
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.summary-value {
+  font-size: clamp(17px, 1.8vw, 22px);
+}
+
+.summary-divider {
+  margin: 0 12px;
+  height: 34px;
+}
+
+/* Light theme keeps the same clean hierarchy. */
+[data-theme='light'] {
+  --bg-deep: #f5f7fa;
+  --bg: #f5f7fa;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-sidebar: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #f1f4f7;
+  --border: #dce3ea;
+  --border-subtle: #e8edf2;
+  --border-light: #c5d0db;
+  --text-primary: #17212b;
+  --text-secondary: #526170;
+  --text-muted: #748292;
+  --accent: #334155;
+  --accent-light: #edf2f7;
+  --accent-border: #cbd5e1;
+}
+
+[data-theme='light'] html,
+[data-theme='light'] body {
+  background: var(--bg);
+  background-image: none;
+}
+
+[data-theme='light'] .card,
+[data-theme='light'] .pulse-card,
+[data-theme='light'] .sector-card,
+[data-theme='light'] .ohlc-filter-card,
+[data-theme='light'] .ohlc-table-card,
+[data-theme='light'] .oc-kpi-bar,
+[data-theme='light'] .oc-table-container,
+[data-theme='light'] .portfolio-summary,
+[data-theme='light'] .charts-bar,
+[data-theme='light'] .chart-view-wrapper {
+  background: #ffffff;
+  border-color: var(--border);
+}
+
+[data-theme='light'] .btn-primary {
+  background: #17212b;
+  color: #ffffff;
+  border-color: #17212b;
+}
+
+@media (max-width: 1000px) {
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .portfolio-summary { flex-wrap: wrap; }
+  .summary-divider { display: none; }
+  .summary-item { min-width: 140px; }
+}
+
+@media (max-width: 700px) {
+  .page,
+  .market-tracker-page,
+  .option-chain-page {
+    padding: 16px 12px;
+  }
+  .page-header,
+  .tracker-page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .portfolio-summary { align-items: flex-start; }
+  .charts-page { padding: 12px; }
+  .charts-bar { align-items: stretch; }
+  .chart-search-wrapper { max-width: none; width: 100%; }
+  .oc-kpi-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
