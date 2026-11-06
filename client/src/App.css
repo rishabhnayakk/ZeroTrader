@@ -403,3 +403,122 @@ h1, h2, h3, h4, .page-title { letter-spacing: -.025em; }
 [data-theme='light'] .btn-primary { color: #fffefa; background: #8f6d39; border-color: #8f6d39; }
 [data-theme='light'] .btn-primary:hover { color: #fffefa; background: #76582d; }
 [data-theme='light'] .logo-mark { color: #fffefa; background: #8f6d39; }
+
+
+/* Motion layer — restrained live-terminal energy */
+@keyframes zt-enter {
+  from { opacity: 0; transform: translate3d(0, 13px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes zt-glow-breathe {
+  0%, 100% { box-shadow: 0 0 0 rgba(198,166,106,0); }
+  50% { box-shadow: 0 0 22px rgba(198,166,106,.075); }
+}
+@keyframes zt-live-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(127,182,154,.32); }
+  50% { opacity: .72; box-shadow: 0 0 0 5px rgba(127,182,154,0); }
+}
+@keyframes zt-ticker-glint {
+  0%, 100% { background-position: -140% 0; }
+  55%, 100% { background-position: 220% 0; }
+}
+@keyframes zt-chart-draw {
+  from { stroke-dashoffset: 1200; opacity: .35; }
+  to { stroke-dashoffset: 0; opacity: 1; }
+}
+@keyframes zt-soft-sheen {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(120%); }
+}
+
+/* Sections arrive with a short stagger instead of appearing all at once */
+.page-header, .tracker-page-header { animation: zt-enter .48s cubic-bezier(.2,.7,.2,1) both; }
+.stats-grid > *, .market-pulse-grid > *, .sector-heatmap-grid > *,
+.dash-grid > *, .ipo-stats > *, .ipo-stat {
+  animation: zt-enter .55s cubic-bezier(.2,.7,.2,1) both;
+}
+.stats-grid > *:nth-child(2), .market-pulse-grid > *:nth-child(2),
+.dash-grid > *:nth-child(2), .ipo-stats > *:nth-child(2) { animation-delay: 70ms; }
+.stats-grid > *:nth-child(3), .market-pulse-grid > *:nth-child(3),
+.dash-grid > *:nth-child(3), .ipo-stats > *:nth-child(3) { animation-delay: 140ms; }
+.stats-grid > *:nth-child(4), .market-pulse-grid > *:nth-child(4),
+.dash-grid > *:nth-child(4), .ipo-stats > *:nth-child(4) { animation-delay: 210ms; }
+.card, .ipo-panel, .oc-table-container, .chart-view-wrapper {
+  animation: zt-enter .52s cubic-bezier(.2,.7,.2,1) both;
+}
+
+/* Living surfaces: slight lift, warm edge, no distracting bounce */
+.card, .pulse-card, .sector-card, .ipo-stat, .quote-card, .mover-item-box {
+  transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, background-color .24s ease;
+}
+.card:hover, .pulse-card:hover, .sector-card:hover, .ipo-stat:hover, .mover-item-box:hover {
+  transform: translateY(-3px);
+  border-color: rgba(198,166,106,.32);
+  box-shadow: 0 10px 28px rgba(0,0,0,.18), 0 0 20px rgba(198,166,106,.035);
+}
+.nav-item { position: relative; overflow: hidden; }
+.nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform .2s ease;
+}
+.nav-item.active::before { transform: scaleY(1); }
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 48%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform .65s ease;
+  pointer-events: none;
+}
+.btn-primary:hover::after { transform: translateX(130%); }
+
+/* Market activity indicators */
+.live-dot, .live-pulse-dot { animation: zt-live-pulse 2s ease-in-out infinite; }
+.topbar-ticker-item {
+  position: relative;
+  overflow: hidden;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.topbar-ticker-item:hover { transform: translateY(-1px); }
+.topbar-ticker-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(198,166,106,.09) 50%, transparent 65%);
+  background-size: 220% 100%;
+  animation: zt-ticker-glint 7s ease-in-out infinite;
+  pointer-events: none;
+}
+.ticker-chg { transition: color .25s ease, text-shadow .25s ease; }
+.pnl-positive, .pnl-negative { transition: color .25s ease; }
+
+/* Smoothly reveal chart strokes on first render */
+.chart-view-wrapper svg path[stroke]:not([stroke="none"]) {
+  animation: zt-chart-draw 1.25s ease-out both;
+}
+
+/* Subtle moving sheen for loading placeholders */
+.skeleton { position: relative; overflow: hidden; }
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.09), transparent);
+  animation: zt-soft-sheen 1.7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
