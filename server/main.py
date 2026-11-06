@@ -1364,3 +1364,71 @@ def health():
         "api_key_set": bool(os.getenv("ZERODHA_API_KEY")),
         "access_token_set": bool(os.getenv("ZERODHA_ACCESS_TOKEN"))
     }
+
+
+@app.get("/api/ipos")
+def get_ipos():
+    """Return current and forthcoming NSE IPO issues, ordered by issue opening date.
+
+    NSE's public JSON endpoint requires a browser-like session cookie. If NSE is
+    temporarily unavailable, return a clear 502 instead of inventing IPO records.
+    """
+    base_url = "https://www.nseindia.com"
+    page_url = f"{base_url}/market-data/all-upcoming-issues-ipo"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                      "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": page_url,
+    }
+    try:
+        session = requests.Session()
+        session.headers.update(headers)
+        session.get(page_url, timeout=10)
+        response = session.get(
+            f"{base_url}/api/all-upcoming-issues",
+            params={"category": "ipo"},
+            timeout=10,
+        )
+        response.raise_for_status()
+        rows = response.json() or []
+        records = []
+        for row in rows:
+            start_date = row.get("issueStartDate")
+            end_date = row.get("issueEndDate")
+            series = (row.get("series") or "EQ").strip().upper()
+            records.append({
+                "symbol": (row.get("symbol") or "").strip(),
+                "company_name": (row.get("companyName") or "").strip(),
+                "segment": "SME" if series == "SME" else "Mainboard",
+                "status": (row.get("status") or "Forthcoming").strip(),
+                "open_date": start_date,
+                "close_date": end_date,
+                "price_band": (row.get("issuePrice") or "").strip() or None,
+                "issue_size": (row.get("issueSize") or "").strip() or None,
+                "exchange": "NSE",
+            })
+        def sort_date(item):
+            raw = item.get("open_date") or ""
+            for fmt in ("%d-%b-%Y", "%d-%B-%Y", "%Y-%m-%d"):
+                try:
+                    return datetime.strptime(raw, fmt)
+                except ValueError:
+                    pass
+            return datetime.max
+        records.sort(key=sort_date)
+        return {
+            "status": "ok",
+            "source": "NSE India",
+            "source_url": page_url,
+            "updated_at": datetime.now().isoformat(),
+            "count": len(records),
+            "ipos": records,
+        }
+    except Exception as exc:
+        logger.error("Unable to fetch NSE IPO calendar: %s", exc)
+        raise HTTPException(
+            status_code=502,
+            detail="NSE IPO data is temporarily unavailable. Please try again later."
+        )
