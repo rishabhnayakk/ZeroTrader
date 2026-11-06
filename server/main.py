@@ -1405,8 +1405,8 @@ def get_ipos():
                 "status": (row.get("status") or "Forthcoming").strip(),
                 "open_date": start_date,
                 "close_date": end_date,
-                "price_band": (row.get("issuePrice") or "").strip() or None,
-                "issue_size": (row.get("issueSize") or "").strip() or None,
+                "price_band": str(row.get("issuePrice") or "").strip() or None,
+                "issue_size": str(row.get("issueSize") or "").strip() or None,
                 "exchange": "NSE",
             })
         def sort_date(item):
